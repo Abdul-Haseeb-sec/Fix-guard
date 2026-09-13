@@ -41,6 +41,8 @@ fix-guard fixes that.
 
 > **Agent:** "Change made to `threshold_check()` in detector.py. Test `test_privilege_escalation_threshold` exercises this function — confirmed via coverage that it hits the modified lines (14–19). Constructed boundary input `level=3` (previously misclassified) — fails on pre-fix code, passes on post-fix code (output attached). Checked for bypass: the CLI's `--threshold` argparse default was previously overriding this path in production use — **flagging as a risk** unless default is also updated. Re-ran full suite from a clean checkout: 73/73 pass. Status: **FIXED**, with one flagged follow-up (argparse default)."
 
+👉 [**See a real transcript of an agent using fix-guard**](examples/dead-code-bypass/REAL_TRANSCRIPT.md)
+
 ---
 
 ## The 8 Rules

@@ -70,7 +70,7 @@ If you cannot fully satisfy the verification steps above, report the change as *
 
 ## Verification Report Template
 
-When reporting a fix, use this structure:
+When reporting a fix, structure your response like this:
 
 ```
 ## Fix Verification Report
@@ -87,4 +87,4 @@ When reporting a fix, use this structure:
 
 ---
 
-*This prompt is part of [fix-guard](https://github.com/AbdulHaseeb/fix-guard) — an open-source behavioral skill that forces AI coding agents to prove fixes work. MIT License.*
+*This prompt is part of [fix-guard](https://github.com/Abdul-Haseeb-sec/Fix-guard) — an open-source behavioral skill that forces AI coding agents to prove fixes work. MIT License.*

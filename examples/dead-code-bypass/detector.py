@@ -38,7 +38,7 @@ def threshold_check(score: int, threshold: int = 5) -> dict:
     """
     # BUG: should be `score > threshold` (strictly greater)
     # Currently: score=5, threshold=5 → detected=True (WRONG per spec)
-    if score >= threshold:
+    if score > threshold:
         return {
             "detected": True,
             "detail": f"Privilege escalation detected: score {score} exceeds threshold {threshold}",
