@@ -23,4 +23,4 @@ jobs:
         python -m unittest test_detector -v
       
     - name: Run variant sync check
-      run: ./scripts/check-variant-sync.sh
+      run: bash scripts/check-variant-sync.sh

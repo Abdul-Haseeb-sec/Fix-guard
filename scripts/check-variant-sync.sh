@@ -4,7 +4,7 @@ set -e
 # Extract the core rules from each file
 # We extract from "## Rule 1" down to the end of the Verification Report Template code block (```)
 extract_rules() {
-  sed -n '/^## Rule 1/,/^```$/p' "$1"
+  sed -n '/^## Rule 1/,/^```$/p' "$1" | tr -d '\r'
 }
 
 R1=$(extract_rules "fix-guard.md")
