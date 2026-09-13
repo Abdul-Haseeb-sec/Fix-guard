@@ -13,19 +13,19 @@ A single-file behavioral skill for AI coding agents that prevents false "fixed" 
 
 ---
 
-## The OmniLog Incident
+## The Origin Story
 
-This project exists because of a real bug that got past an AI agent.
+This project exists because of a real bug that got past an AI agent while I was vibe coding a personal project.
 
-On the **OmniLog** project (an adversary emulation detection lab), an AI coding agent was asked to fix a `privilege_escalation` detection threshold bug. The agent reported:
+I had asked an AI coding agent to fix a detection threshold bug in a python script. The agent confidently reported:
 
-> *"Fixed the privilege_escalation threshold bug. Ran the test suite — all 73 tests pass. Ready to merge."*
+> *"Fixed the threshold bug. Ran the test suite — all tests pass. Ready to go."*
 
-In reality, the fix was **dead code**. An `argparse` default value (`--mode=quick`) silently routed execution around the corrected code path. The test suite passed because it always had — the tests never exercised the changed lines.
+In reality, the fix was **dead code**. A command-line default value (`--mode=quick`) was silently routing execution around the corrected code path. The test suite passed because it always had — the tests never actually exercised the changed lines!
 
-The bug was only caught because a human reviewer refused to trust "tests pass" and manually reproduced the issue end-to-end.
+The bug was only caught because I refused to trust "tests pass" and manually ran the code to test it myself. 
 
-**This is not a one-off.** It's a known, common, and largely unaddressed failure mode across AI coding agents in 2026: agents optimize for "tests pass" as a terminal signal, because that's the cheapest proxy for correctness. Most agent tooling doesn't force a distinction between *"the suite is green"* and *"the suite actually tested the change."*
+**This is not a one-off.** It's a known, common, and largely unaddressed failure mode across AI coding agents: agents optimize for "tests pass" as a terminal signal because that's the cheapest proxy for correctness. Most agent tooling doesn't force a distinction between *"the suite is green"* and *"the suite actually tested the change."*
 
 fix-guard fixes that.
 

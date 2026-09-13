@@ -1,6 +1,6 @@
 # Dead-Code Bypass Example
 
-This example reproduces the exact bug class from the [OmniLog incident](../../README.md#the-omnilog-incident) — the incident that inspired fix-guard.
+This example reproduces the exact bug class from the [Origin Story](../../README.md#the-origin-story) — the incident that inspired fix-guard.
 
 ## What's in here
 
