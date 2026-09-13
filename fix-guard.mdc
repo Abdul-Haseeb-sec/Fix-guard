@@ -1,0 +1,92 @@
+---
+description: "fix-guard: Forces the agent to empirically prove a fix works before claiming success. Prevents coverage-blind passes, dead-code bypasses, and false fixed claims."
+globs:
+alwaysApply: true
+---
+
+# fix-guard
+
+**You must follow every rule below when fixing bugs, applying patches, or verifying changes. No exceptions. No shortcuts.**
+
+---
+
+## Rule 1 — Terminal Claim Gate
+
+Never say a fix is complete, done, or verified without first stating exactly which test(s) or manual steps exercised the changed lines. "The test suite passed" is not sufficient on its own.
+
+**You must name the specific test(s) or verification steps before any claim of success.**
+
+---
+
+## Rule 2 — Coverage Confirmation
+
+Before claiming a fix works, confirm the test(s) you named actually run through the exact lines you changed — not just the same file or function. If you can't confirm this, say so explicitly instead of assuming.
+
+**Trace the execution path from test → changed lines. If you can't trace it, say "I cannot confirm coverage" — do not guess.**
+
+---
+
+## Rule 3 — Adversarial Check
+
+For every fix, construct or identify one concrete input that would fail without your change and pass with it. Show the failing result before the fix and the passing result after. If you cannot construct such a case, explain why the fix has no observable effect — that itself is a red flag.
+
+**No fix is verified without a before/after demonstration using a concrete input.**
+
+---
+
+## Rule 4 — Bypass Trap Check
+
+Explicitly check: could a default argument, config value, environment variable, feature flag, or earlier conditional branch cause this fix to be skipped in real usage? State the result of this check, even if the answer is "no risk found."
+
+**This is non-negotiable. The original incident that inspired this skill was caused by an argparse default silently routing execution around a valid fix. Check every time.**
+
+---
+
+## Rule 5 — Raw Output Requirement
+
+Paste the actual command output you ran — exit codes, test runner output, relevant logs. A description of output ("all tests passed") is not a substitute for showing it.
+
+**Show the receipts. Always.**
+
+---
+
+## Rule 6 — Clean-State Re-verification
+
+Before declaring a fix final, re-verify from a clean checkout or equivalent fresh state where possible. If that's not feasible in this environment, say so explicitly rather than silently skipping it.
+
+**Stale local state can mask bugs that appear on fresh checkouts. Re-verify or explain why you can't.**
+
+---
+
+## Rule 7 — Graceful Degradation (No Test Suite)
+
+If there's no automated test for this change: manually reproduce the original bug, apply the fix, reproduce the same steps again, and confirm the failure is gone. Report each step's result. Do not skip verification just because there's no test file.
+
+**No tests ≠ no verification. Follow the manual checklist.**
+
+---
+
+## Rule 8 — Escalation on Uncertainty
+
+If you cannot fully satisfy the verification steps above, report the change as **UNVERIFIED**, not FIXED. State exactly what's missing so a human can finish the check.
+
+**When in doubt, say UNVERIFIED. Never round uncertainty up to success.**
+
+---
+
+## Verification Report Template
+
+When reporting a fix, structure your response like this:
+
+```
+## Fix Verification Report
+
+**Change:** [what you changed and where]
+**Test(s) exercising this change:** [specific test names or manual steps]
+**Coverage confirmed:** [yes — traced path / no — explain why]
+**Adversarial input:** [the concrete input, before/after results]
+**Bypass check:** [checked defaults/config/flags/branches — result]
+**Raw output:** [paste actual command output below]
+**Clean-state verified:** [yes / no — explain if not feasible]
+**Status:** [FIXED / UNVERIFIED — with explanation if unverified]
+```
