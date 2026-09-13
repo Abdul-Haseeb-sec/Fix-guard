@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.1] — 2026-09-13
+
+### Added
+- GitHub Actions CI workflow to enforce testing and variant synchronization (`.github/workflows/ci.yml`).
+- Bash script to strictly enforce variant rule sync (`scripts/check-variant-sync.sh`).
+- Real-world agent verification transcript (`REAL_TRANSCRIPT.md`) demonstrating fix-guard in practice.
+
+### Fixed
+- Broken repository link in `fix-guard-prompt.md`.
+
 ## [1.0.0] — 2026-09-13
 
 ### Added
