@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.0] — 2026-09-13
+
+### Added
+- Expanded the evidence base to prove rules are language-agnostic and cover multiple bug classes.
+- Added `examples/swallowed-exception/` (Python) to demonstrate overly broad exception handling bypassing verification.
+- Added `examples/mocked-dependency-mask/` (Python) to demonstrate mocks masking production crashes.
+- Added `examples/js-dead-code-bypass/` (JavaScript) to reproduce the core bypass trap in Node.js.
+- Added `EVIDENCE.md` to track verification status of all examples and pending real-world validations.
+
+### Fixed
+- Enforced LF line endings for `.sh` scripts via `.gitattributes` to prevent CRLF checkouts from breaking Linux CI jobs.
+
 ## [1.0.1] — 2026-09-13
 
 ### Added

@@ -185,16 +185,30 @@ fix-guard/
 ├── LICENSE                   # MIT
 ├── CHANGELOG.md              # Version history
 ├── CONTRIBUTING.md            # How to contribute
+├── EVIDENCE.md               # Evidence base tracking status
 ├── examples/
-│   └── dead-code-bypass/     # Reproduces the OmniLog bug class
-│       ├── detector.py       # Buggy privilege escalation detector
-│       ├── test_detector.py  # Green-but-coverage-blind test suite
-│       └── README.md         # 5-minute walkthrough
+│   ├── dead-code-bypass/     # Argparse default bypass (Python)
+│   ├── js-dead-code-bypass/  # CLI default bypass (JavaScript)
+│   ├── swallowed-exception/  # Swallowed error bypass (Python)
+│   └── mocked-dependency-mask/ # Mock masked crash (Python)
 └── .github/
     └── ISSUE_TEMPLATE/
         ├── bug_report.md
         └── feature_request.md
 ```
+
+---
+
+## The Evidence Base
+
+The rules in this repository are derived from concrete, real-world failure modes. We maintain an accumulating evidence base of these bug classes in the `examples/` directory to prove language and framework agnosticism. 
+
+Currently covered bug classes:
+1. **Dead Code Bypass** (Python & JavaScript) — fixes hidden behind unchecked default arguments
+2. **Swallowed Exception** (Python) — fixes that crash silently under overly broad exception handling
+3. **Mocked Dependency Mask** (Python) — fixes that pass tests against mocks but crash in production
+
+*See [EVIDENCE.md](EVIDENCE.md) for full status tracking, including the pending search for an organic open-source verification case.*
 
 ---
 
