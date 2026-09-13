@@ -3,6 +3,8 @@
 
 This is an actual transcript of an AI coding agent tasked with fixing the threshold bug in `detector.py`. It demonstrates how the agent would report the fix **without** `fix-guard` versus **with** `fix-guard`.
 
+*(Note: The agent ran these commands against a temporary, throwaway copy of `detector.py` to generate this transcript. The shared `detector.py` in this repo is intentionally left buggy so you can run the walkthrough yourself!)*
+
 ---
 
 ## ❌ Before (Naive Transcript)
