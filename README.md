@@ -6,6 +6,8 @@
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](#)
 [![Works with Claude Code](https://img.shields.io/badge/Claude%20Code-supported-blue.svg)](#claude-code)
 [![Works with Cursor](https://img.shields.io/badge/Cursor-supported-purple.svg)](#cursor)
+[![Works with Antigravity](https://img.shields.io/badge/Antigravity-supported-orange.svg)](#antigravity)
+[![Works with VS Code](https://img.shields.io/badge/VS%20Code-supported-blue.svg)](#vs-code)
 
 A single-file behavioral skill for AI coding agents that prevents false "fixed" claims. Copy one file into your project and your agent can never again say "tests pass" without showing exactly which tests exercise the fix, checking for bypass traps, and demonstrating the fix with a concrete before/after.
 
@@ -94,7 +96,27 @@ cp fix-guard.mdc .cursor/rules/fix-guard.mdc
 
 The rule is set to `alwaysApply: true`, so it activates globally — no path scoping needed.
 
-### Antigravity / Windsurf / Other Agents
+### Antigravity
+
+Copy the skill file into your project's `.agents` folder (or globally in your home directory) and name it `SKILL.md`:
+
+```bash
+mkdir -p .agents/skills/fix-guard
+cp fix-guard.md .agents/skills/fix-guard/SKILL.md
+```
+
+Antigravity will automatically discover it on your next session.
+
+### VS Code (GitHub Copilot)
+
+VS Code Copilot supports workspace-level instructions. You can append the prompt file to your `.github/copilot-instructions.md`:
+
+```bash
+mkdir -p .github
+cat fix-guard-prompt.md >> .github/copilot-instructions.md
+```
+
+### Other Agents (Manual Prompting)
 
 For agents without native persistent skill loading, paste the contents of `fix-guard-prompt.md` at the start of your fix/verification session.
 
@@ -104,8 +126,6 @@ cat fix-guard-prompt.md | clip     # Windows
 cat fix-guard-prompt.md | pbcopy   # macOS
 cat fix-guard-prompt.md | xclip    # Linux
 ```
-
-> **Note:** This is a known limitation. If Antigravity or other agents add native skill-file loading, we'll add a dedicated variant. For now, the manual paste approach matches real-world workflows (and it works).
 
 ---
 
@@ -147,7 +167,7 @@ Rule 7 (Graceful Degradation) explicitly covers this: the agent follows a manual
 Yes, slightly — the agent does more work before claiming "done." That's the point. A 30-second delay is cheaper than deploying dead code.
 
 **Q: Can I use this with [specific agent]?**
-If your agent can load a persistent text file into context (or you can paste one), fix-guard works. The three included variants cover Claude Code, Cursor, and any agent that accepts pasted instructions.
+If your agent can load a persistent text file into context (or you can paste one), fix-guard works. The included variants natively support Claude Code, Cursor, Antigravity, and VS Code (GitHub Copilot), plus fallback instructions for any other agent.
 
 **Q: Does this guarantee my fixes are correct?**
 No. fix-guard forces *honest reporting* of verification state. It makes it much harder for an agent to claim "fixed" on unverified code, but it cannot guarantee the absence of all bugs. Rule 8 exists specifically for this: when in doubt, the agent reports UNVERIFIED.
